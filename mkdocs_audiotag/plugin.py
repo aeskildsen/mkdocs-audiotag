@@ -30,7 +30,7 @@ class AudioTag(mkdocs.plugins.BasePlugin):
                     tag.set(attribute, '')
 
             for type, file in sources:
-                ET.SubElement(tag, 'source', attrib={'src': file, 'type': type})
+                ET.SubElement(tag, 'source', attrib={'src': '../' + file, 'type': type})
             
             new_tag = ET.tostring(tag, encoding='unicode', method='html') + '\n'
             
