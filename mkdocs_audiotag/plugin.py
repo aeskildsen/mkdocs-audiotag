@@ -13,7 +13,9 @@ class AudioTag(mkdocs.plugins.BasePlugin):
     )
 
     def on_page_markdown(self, markdown, page, config, files):
-        #surfers = re.finditer(r'<!--\s*audio\s*-->\s*(.+?)<!--\s+-->', markdown, re.DOTALL)
+        # this finds all audio files noted like this: ![audio/mp3](path/to/my/file.mp3)
+        # capturing the ones that are written on consecutive lines together
+        # (i.e. with no spaces between lines)
         audio_elements = re.finditer(r'^(?:!\[audio/.+?]\(.+?\)\n)+', markdown, re.M)
         
         for match in audio_elements:
@@ -31,7 +33,11 @@ class AudioTag(mkdocs.plugins.BasePlugin):
 
             for mimetype, file in sources:
                 element_class = mimetype.replace('audio/', '')
-                ET.SubElement(tag, 'source', attrib={'src': '../' + file, 'type': mimetype, 'class': element_class})
+                ET.SubElement(tag, 'source', attrib={
+                    'src': '../' + file,
+                    'type': mimetype,
+                    'class': element_class
+                    })
             
             new_tag = ET.tostring(tag, encoding='unicode', method='html') + '\n'
             
