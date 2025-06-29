@@ -97,26 +97,25 @@ plugins:
 ```yaml
 plugins:
   - mkdocs-audiotag:
-      loop: true
-      preload: none
+      width: 300px
 ```
 
 ## How to write the markdown content
 
-There is no standard way to describe audio media in markdown. Inspired by [mkdocs-audio](https://github.com/jfcmontmorency/mkdocs-audio), we use the same syntax as with images. Instead of a title or a static marker, we specify the file's [MIME type](#mime-types), which must begin with `audio/`.
+There is no standard way to describe audio media in markdown. Inspired by [mkdocs-audio](https://github.com/jfcmontmorency/mkdocs-audio), we use the same syntax as with images. Instead of a title or a static marker, we specify the file's [MIME type](#mime-types), which **must begin with** `audio/` (otherwise, the plugin will not recognise the tag).
 
 ```markdown
 ![audio/ogg](my-audio-file.ogg)
 ```
 
-To specify multiple source files, just include another file **immediately below the first line with, i.e. with no extra line breaks**. The browser will then try to load the first audio file. If that fails, it will move on to the next one, and so forth. This means you can put the preferred format first, and then add fallback options below. See [notes on this browser behavior at MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/audio#usage_notes).
+To specify multiple source files, just include another file **immediately below the first line, i.e. with no extra line breaks**. The browser will try to load the first audio file. If that fails, it will move on to the next one, and so forth. This means you can put the preferred format first, and then add fallback options below. See [notes on this browser behavior at MDN](https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements/audio#usage_notes).
 
 ```markdown
 ![audio/ogg](my-audio-file.ogg)
 ![audio/mpeg](my-audio-file.mp3)
 ```
 
-If you need to caption the audio file, use a separate plugin for that.
+If you need to caption the audio element, use a separate plugin for that.
 
 ### MIME types
 
