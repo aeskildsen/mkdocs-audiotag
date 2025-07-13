@@ -18,11 +18,17 @@ class AudioTag(mkdocs.plugins.BasePlugin):
         # (i.e. with no spaces between lines)
         audio_elements = re.finditer(r'^(?:!\[audio/.+?]\(.+?\)\n)+', markdown, re.M)
         
+        num = 0
         for match in audio_elements:
             old_tag = match.group(0)
-            sources = re.findall(r'!\[(.+)\]\((.+)\)', old_tag)            
+            sources = re.findall(r'!\[(.+)\]\((.+)\)', old_tag)
 
-            tag = ET.Element('audio', attrib={'preload': self.config['preload']})
+            container = ET.Element('div', attrib={'class': 'audio-container', 'id': f'audio-container-{num}'})
+
+            tag = ET.Element('audio', attrib={
+                    'preload': self.config['preload'],
+                    'id': 'audio-tag' + str(num),
+                 })
 
             tag.set('style',f'width:{self.config['width']}')
 
@@ -39,8 +45,10 @@ class AudioTag(mkdocs.plugins.BasePlugin):
                     'class': element_class
                     })
             
-            new_tag = ET.tostring(tag, encoding='unicode', method='html') + '\n'
+            container.append(tag)
+
+            new_tag = ET.tostring(container, encoding='unicode', method='html') + '\n'
             
             markdown = markdown.replace(old_tag, new_tag, 1)
-        
+            num += 1        
         return markdown
