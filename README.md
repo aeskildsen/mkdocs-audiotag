@@ -8,8 +8,6 @@ This plugin was made as an alternative to [mkdocs-audio](https://github.com/jfcm
 
 ### Install the plugin
 
-This package is not published on PyPi (yet), so we install from GitHub:
-
 ```shell
 pip install mkdocs-audiotag
 ```
