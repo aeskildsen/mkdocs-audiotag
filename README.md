@@ -11,7 +11,7 @@ This plugin was made as an alternative to [mkdocs-audio](https://github.com/jfcm
 This package is not published on PyPi (yet), so we install from GitHub:
 
 ```shell
-pip install git+https://github.com/aeskildsen/mkdocs-audiotag.git#egg=mkdocs-audiotag
+pip install mkdocs-audiotag
 ```
 
 ### Enable the plugin in mkdocs.yml
