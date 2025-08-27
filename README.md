@@ -4,6 +4,8 @@ This is a plugin for the wonderful [mkdocs](https://www.mkdocs.org/) static site
 
 This plugin was made as an alternative to [mkdocs-audio](https://github.com/jfcmontmorency/mkdocs-audio), in order to support embedding multiple audio file sources. This is sometimes necessary because file formats and container types are not supported equally well in different browsers or on different platforms.
 
+![PyPI - Downloads](https://img.shields.io/pypi/dm/mkdocs-audiotag?color=goldenrod)
+
 ## Quick start
 
 ### Install the plugin
